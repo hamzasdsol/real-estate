@@ -1,21 +1,21 @@
 import { initializeApp } from "firebase/app";
 import { getDatabase, ref, get, push, remove, update } from "firebase/database";
-import { 
-  getAuth, 
-  signInWithEmailAndPassword, 
-  signOut, 
-  onAuthStateChanged 
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from "firebase/auth";
 
 
 const firebaseConfig = {
-  apiKey: "AIzaSyAhud7Y62fYq1a-CQ-mQ6r2ltl67X-Bgi8",
-  authDomain: "real-estate-ca394.firebaseapp.com",
-  projectId: "real-estate-ca394",
-  storageBucket: "real-estate-ca394.appspot.com",
-  messagingSenderId: "141174544077",
-  appId: "1:141174544077:web:27cec332309460d9f6fb84",
-  measurementId: "G-1CKDNS852F",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
 };
 
 const app = initializeApp(firebaseConfig);
@@ -28,7 +28,7 @@ export const loginUser = async (email, password) => {
     const userCredential = await signInWithEmailAndPassword(auth, email, password);
     const user = userCredential.user;
 
-  
+
     localStorage.setItem("user", JSON.stringify(user));
 
     return user;
